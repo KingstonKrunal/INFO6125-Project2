@@ -3,7 +3,6 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -215,42 +214,40 @@
                                 <rect key="frame" x="0.0" y="44" width="390" height="766"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uoo-14-GvI">
-                                <rect key="frame" x="325" y="740" width="50" height="50"/>
+                                <rect key="frame" x="330" y="740" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="3Z1-Xp-Z3Q"/>
-                                    <constraint firstAttribute="width" constant="50" id="V3r-JU-9Qg"/>
+                                    <constraint firstAttribute="width" constant="50" id="zE4-NG-gYa"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="plus.app.fill" catalog="system"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="add-event"/>
                                 <connections>
                                     <action selector="addEvent:" destination="PjA-5J-hTN" eventType="touchUpInside" id="mWy-9I-2Xd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ixp-Jc-Vw1">
-                                <rect key="frame" x="320" y="54" width="50" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ixp-Jc-Vw1">
+                                <rect key="frame" x="330" y="54" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Ifw-Wi-tQk"/>
                                     <constraint firstAttribute="width" constant="50" id="c9I-7k-Bag"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" cornerStyle="capsule">
-                                    <imageReference key="image" image="ellipsis" catalog="system" symbolScale="large"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
-                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="baseBackgroundColor" red="0.91976243260000001" green="0.12908746909999999" blue="0.1990710409" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </buttonConfiguration>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" image="kebab-menu">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="showActionSheet:" destination="PjA-5J-hTN" eventType="touchUpInside" id="Np3-eb-4Uj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S59-Q0-5I2">
-                                <rect key="frame" x="325" y="682" width="50" height="50"/>
+                                <rect key="frame" x="330" y="682" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="6Yt-vF-h4r"/>
                                     <constraint firstAttribute="width" constant="50" id="Lh4-4U-6gv"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="location.fill" catalog="system"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" image="target"/>
                                 <connections>
                                     <action selector="myLocation:" destination="PjA-5J-hTN" eventType="touchUpInside" id="sgG-UV-FKl"/>
                                 </connections>
@@ -265,14 +262,15 @@
                             <constraint firstItem="Uoo-14-GvI" firstAttribute="top" secondItem="S59-Q0-5I2" secondAttribute="bottom" constant="8" symbolic="YES" id="U3I-hB-E6P"/>
                             <constraint firstItem="wN4-Uq-RjQ" firstAttribute="top" secondItem="XtZ-rH-GhN" secondAttribute="top" id="Uye-fb-a79"/>
                             <constraint firstItem="XtZ-rH-GhN" firstAttribute="trailing" secondItem="wN4-Uq-RjQ" secondAttribute="trailing" id="XZw-8q-LNN"/>
-                            <constraint firstAttribute="trailing" secondItem="Ixp-Jc-Vw1" secondAttribute="trailing" constant="20" id="dkX-Kh-55N"/>
+                            <constraint firstAttribute="trailing" secondItem="Ixp-Jc-Vw1" secondAttribute="trailing" constant="10" id="dkX-Kh-55N"/>
                             <constraint firstItem="XtZ-rH-GhN" firstAttribute="bottom" secondItem="Uoo-14-GvI" secondAttribute="bottom" constant="20" id="fpU-K6-Zyk"/>
-                            <constraint firstItem="XtZ-rH-GhN" firstAttribute="trailing" secondItem="Uoo-14-GvI" secondAttribute="trailing" constant="15" id="fuy-C5-keg"/>
-                            <constraint firstItem="XtZ-rH-GhN" firstAttribute="trailing" secondItem="S59-Q0-5I2" secondAttribute="trailing" constant="15" id="o9j-gy-4Md"/>
+                            <constraint firstItem="XtZ-rH-GhN" firstAttribute="trailing" secondItem="Uoo-14-GvI" secondAttribute="trailing" constant="10" id="fuy-C5-keg"/>
+                            <constraint firstItem="XtZ-rH-GhN" firstAttribute="trailing" secondItem="S59-Q0-5I2" secondAttribute="trailing" constant="10" id="o9j-gy-4Md"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="wN4-Uq-RjQ" id="MaY-eh-zOa"/>
+                        <outlet property="menuButton" destination="Ixp-Jc-Vw1" id="Tt6-7O-w3N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vsn-Ft-67g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -544,12 +542,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ellipsis" catalog="system" width="128" height="37"/>
+        <image name="add-event" width="512" height="512"/>
         <image name="firebase_28dp.png" width="56" height="56"/>
+        <image name="kebab-menu" width="512" height="512"/>
         <image name="location.fill" catalog="system" width="128" height="121"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="plus.app.fill" catalog="system" width="128" height="114"/>
+        <image name="target" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

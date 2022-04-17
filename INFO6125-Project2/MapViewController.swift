@@ -12,6 +12,7 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
+    @IBOutlet weak var menuButton: UIButton!
     @IBOutlet private var mapView: MKMapView!
     
     var locationManager: CLLocationManager!
