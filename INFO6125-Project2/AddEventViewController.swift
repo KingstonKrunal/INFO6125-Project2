@@ -15,7 +15,6 @@ class AddEventViewController: UIViewController {
     
     @IBOutlet weak var eventNameTF: UITextField!
     @IBOutlet weak var eventDateDP: UIDatePicker!
-    @IBOutlet weak var eventDescTV: UITextView!
     
     var address: String?
     var coordinate: CLLocationCoordinate2D?
@@ -41,8 +40,10 @@ class AddEventViewController: UIViewController {
         locationPicker.resultRegionDistance = 500
 
         locationPicker.completion = { location in
-            self.coordinate = location?.coordinate
-            self.address = location?.address
+            if let c = location?.coordinate, let lname = location?.name, let laddress =  location?.address {
+                self.coordinate = c
+                self.address = lname + ", " + laddress
+            }
         }
 
         locationPicker.modalPresentationStyle = .fullScreen
@@ -51,7 +52,7 @@ class AddEventViewController: UIViewController {
     }
     
     @IBAction func addEvent(_ sender: Any) {
-        if let address = address, let coordinate = coordinate, let eventName = eventNameTF.text, let eventDesc = eventDescTV.text, let uid = Auth.auth().currentUser?.uid {
+        if let address = address, let coordinate = coordinate, let eventName = eventNameTF.text, let uid = Auth.auth().currentUser?.uid {
             let eventDate = eventDateDP.date
             
             let db = Firestore.firestore()
@@ -61,8 +62,7 @@ class AddEventViewController: UIViewController {
                 "address": address,
                 "latitude": coordinate.latitude,
                 "longitude": coordinate.longitude,
-                "date": eventDate,
-                "description": eventDesc
+                "date": eventDate
             ]) { err in
                 if let err = err {
                     print("Error adding document: \(err)")
@@ -75,9 +75,7 @@ class AddEventViewController: UIViewController {
     }
     
     func gotoMapVC() {
-        let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "mapViewController") as! MapViewController
-        nextViewController.modalPresentationStyle = .fullScreen
-        self.present(nextViewController, animated: true)
+        self.dismiss(animated: true)
     }
     
     func errorAlert(error: String) {

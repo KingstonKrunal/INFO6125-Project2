@@ -7,8 +7,8 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 import MapKit
-
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -16,19 +16,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     var locationManager: CLLocationManager!
     var currentLocationStr = "Current location"
-    var currentLocation: CLLocationCoordinate2D?
+    var currentLocation: CLLocation?
+    var selectedEventLocation: CLLocation?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let artwork = MapPoint(
-          title: "King David Kalakaua",
-          locationName: "Waikiki Gateway Park",
-          discipline: "Event",
-          coordinate: CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661))
-        mapView.addAnnotation(artwork)
+        mapView.delegate = self
         
         trackCurrentLocation()
+        addEventsToMap()
     }
     
     @IBAction func myLocation(_ sender: UIButton) {
@@ -37,7 +34,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     @IBAction func addEvent(_ sender: UIButton) {
         let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "addEventNVC") as! UINavigationController
-//        nextViewController.modalPresentationStyle = .fullScreen
         self.present(nextViewController, animated: true)
     }
     
@@ -48,12 +44,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
         alert.addAction(UIAlertAction(title: "Show Profile",
                                       style: .default) { _ in
-            // onAction1()
+            let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "profileVC") as! ProfileViewController
+            self.present(nextViewController, animated: true)
         })
         
         alert.addAction(UIAlertAction(title: "Show Events",
                                       style: .default) { _ in
-            // onAction1()
+            let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "eventsVC") as! ListEventsViewController
+            self.present(nextViewController, animated: true)
         })
 
         alert.addAction(UIAlertAction(title: "Logout",
@@ -72,9 +70,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         })
 
         alert.addAction(UIAlertAction(title: "Cancel",
-                                      style: .cancel) { _ in
-            // onCancel
-        })
+                                      style: .cancel))
 
         self.present(alert, animated: true)
     }
@@ -88,17 +84,31 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         self.present(alert, animated: true, completion: nil)
     }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "MyMarker")
+        
+        if annotation.title == currentLocationStr {
+//            annotationView.markerTintColor = UIColor.magenta
+            annotationView.glyphImage = UIImage(named: "pin")
+        } else {
+            annotationView.markerTintColor = UIColor(red: (69.0/255), green: (95.0/255), blue: (170.0/255), alpha: 1.0)
+            annotationView.glyphImage = UIImage(named: "library")
+        }
+        
+        return annotationView
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let mUserLocation:CLLocation = locations[0] as CLLocation
+        currentLocation = locations[0] as CLLocation
 
-        currentLocation = CLLocationCoordinate2D(latitude: mUserLocation.coordinate.latitude, longitude: mUserLocation.coordinate.longitude)
+        let location2D = CLLocationCoordinate2D(latitude: currentLocation!.coordinate.latitude, longitude: currentLocation!.coordinate.longitude)
 
-        mapView.findClosestLocation(mUserLocation) { address in
+        mapView.findClosestLocation(currentLocation!) { address in
             self.mapView.addAnnotation(
-                MapPoint(title: "Current Location",
+                MapPoint(title: self.currentLocationStr,
                          locationName: address,
                          discipline: "Current Location",
-                         coordinate: self.currentLocation!))
+                         coordinate: location2D))
         }
     }
     
@@ -118,15 +128,45 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func zoomIntoCurrectLocation() {
-        
         if currentLocation != nil {
             mapView.centerToLocation(
-                CLLocation(latitude: currentLocation!.latitude, longitude: currentLocation!.longitude),
-                regionRadius: 1000
+                currentLocation!,
+                regionRadius: 600
             )
         }
     }
+    
+    func zoomIntoEventLocation() {
+        if selectedEventLocation != nil {
+            mapView.centerToLocation(
+                selectedEventLocation!,
+                regionRadius: 500
+            )
+        }
+    }
+    
+    func addEventsToMap() {
+        let db = Firestore.firestore()
+        db.collection("events").whereField("date", isGreaterThan: NSDate())
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                    self.errorAlert(title: "Erroe plotting events", error: err.localizedDescription)
+                } else {
+                    for document in querySnapshot!.documents {
+                        self.mapView.addAnnotation(MapPoint(
+                            title: document.get("name") as? String ?? "",
+                            locationName: document.get("address") as? String ?? "",
+                            discipline: document.get("name") as? String ?? "",
+                            coordinate: CLLocationCoordinate2D(
+                                latitude: document.get("latitude") as? Double ?? 0,
+                                longitude: document.get("longitude")  as? Double ?? 0)))
+                    }
+                }
+        }
+    }
 }
+
 
 extension MKMapView {
     func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 500) {

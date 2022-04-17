@@ -40,8 +40,7 @@ class SignUpViewController: UIViewController {
                 if authResult?.user != nil {
                     if let uid = authResult?.user.uid {
                         let db = Firestore.firestore()
-                        db.collection("users").addDocument(data: [
-                            "uid": uid,
+                        db.collection("users").document(uid).setData([
                             "name": uname,
                             "pet_name": pname,
                             "pet_type": pType
