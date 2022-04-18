@@ -13,10 +13,49 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     
+    @IBOutlet weak var loginButton: UIButton!
+    
+    @IBOutlet weak var errorMessageForEmailId: UILabel!
+    @IBOutlet weak var errorMessageForPassword: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //TODO: Do empty check
+        loginButton.isEnabled = (emailTF.text == nil || passwordTF.text == nil)
+    }
+    
+    func checkingValidity()  {
+        if let email = emailTF.text, let password = passwordTF.text {
+            if !email.isEmpty && !password.isEmpty {
+                loginButton.isEnabled = true
+            } else {
+                loginButton.isEnabled = false
+            }
+        }
+    }
+    
+    @IBAction func emailTFChanged(_ sender: UITextField) {
+        checkingValidity(   )
+        
+        if let email = emailTF.text{
+            if !email.isEmpty {
+                errorMessageForEmailId.isHidden = true
+            } else {
+                errorMessageForEmailId.isHidden = false
+            }
+        }
+    }
+    
+    @IBAction func passwordTFChanged(_ sender: UITextField) {
+        checkingValidity()
+        
+        if let password = passwordTF.text{
+            if !password.isEmpty {
+                errorMessageForPassword.isHidden = true
+            } else {
+                errorMessageForPassword.isHidden = false
+            }
+        }
     }
     
     @IBAction func login(_ sender: UIButton) {

@@ -84,7 +84,6 @@
 		3842C5052806122C00B40F71 /* INFO6125-Project2 */ = {
 			isa = PBXGroup;
 			children = (
-				3878313A280AB80800D6753E /* GoogleService-Info.plist */,
 				3842C5062806122C00B40F71 /* AppDelegate.swift */,
 				3842C5082806122C00B40F71 /* SceneDelegate.swift */,
 				3842C50A2806122C00B40F71 /* SignUpViewController.swift */,
@@ -93,13 +92,14 @@
 				380B8698280BE84F001F7E0A /* ListEventsViewController.swift */,
 				385DB72F280BD4FB005C19BF /* ProfileViewController.swift */,
 				38783153280AE6BB00D6753E /* AddEventViewController.swift */,
+				38783136280AABF900D6753E /* LogInViewController.swift */,
+				38783151280AD85000D6753E /* MapPoint.swift */,
 				38783143280ABC7F00D6753E /* MapViewController.swift */,
 				38783138280AB76900D6753E /* RootViewController.swift */,
-				38783136280AABF900D6753E /* LogInViewController.swift */,
 				3842C50F2806122F00B40F71 /* Assets.xcassets */,
 				3842C5112806122F00B40F71 /* LaunchScreen.storyboard */,
+				3878313A280AB80800D6753E /* GoogleService-Info.plist */,
 				3842C5142806122F00B40F71 /* Info.plist */,
-				38783151280AD85000D6753E /* MapPoint.swift */,
 			);
 			path = "INFO6125-Project2";
 			sourceTree = "<group>";
