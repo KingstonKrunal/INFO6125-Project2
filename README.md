@@ -1,5 +1,5 @@
 # INFO6125-Project2
-INFO6125 - iOS Application Development 1 - Project 2
+INFO6125 - iOS Application Development 1 - Project 2 - Pet Lovers
 
 <b>Contributors</b>
 1. Krunal Shah
