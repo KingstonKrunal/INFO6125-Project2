@@ -16,13 +16,39 @@ class AddEventViewController: UIViewController {
     @IBOutlet weak var eventNameTF: UITextField!
     @IBOutlet weak var eventDateDP: UIDatePicker!
     
+    @IBOutlet weak var addButton: UIButton!
+    
+    @IBOutlet weak var errorMessageForEventName: UILabel!
+    
     var address: String?
     var coordinate: CLLocationCoordinate2D?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        addButton.isEnabled = (eventNameTF.text == nil)
+    }
+    
+    func checkingValidity()  {
+        if let eventName = eventNameTF.text {
+            if !eventName.isEmpty {
+                addButton.isEnabled = true
+            } else {
+                addButton.isEnabled = false
+            }
+        }
+    }
+    
+    @IBAction func eventNameTFChanged(_ sender: UITextField) {
+        checkingValidity(   )
         
+        if let eventName = eventNameTF.text{
+            if !eventName.isEmpty {
+                errorMessageForEventName.isHidden = true
+            } else {
+                errorMessageForEventName.isHidden = false
+            }
+        }
     }
     
     @IBAction func selectLocation(_ sender: UIButton) {

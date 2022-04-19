@@ -488,9 +488,12 @@
                                 <rect key="frame" x="30" y="154" width="330" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="eventNameTFChanged:" destination="cGo-ut-BWe" eventType="editingDidEnd" id="VzL-6W-Ixk"/>
+                                </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Upb-Gi-cNw">
-                                <rect key="frame" x="50" y="475" width="290" height="31"/>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Upb-Gi-cNw">
+                                <rect key="frame" x="50" y="495" width="290" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Add">
                                     <color key="baseForegroundColor" red="0.89019607840000003" green="0.95686274510000002" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -501,7 +504,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pp1-U5-tUG">
-                                <rect key="frame" x="50" y="414" width="290" height="31"/>
+                                <rect key="frame" x="50" y="434" width="290" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="location.fill" catalog="system" title="Select Location">
                                     <color key="baseForegroundColor" red="0.89019607840000003" green="0.95686274510000002" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -512,21 +515,29 @@
                                 </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="U1d-uY-CED">
-                                <rect key="frame" x="30" y="188" width="330" height="216"/>
+                                <rect key="frame" x="30" y="208" width="330" height="216"/>
                             </datePicker>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Enter Event Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZL-jG-fF8">
+                                <rect key="frame" x="30" y="193" width="139.33333333333334" height="14"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.04677283753" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="d6R-dq-bST"/>
                         <color key="backgroundColor" red="0.89019607840000003" green="0.95686274510000002" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="d6R-dq-bST" firstAttribute="trailing" secondItem="ldT-8Z-GIX" secondAttribute="trailing" constant="30" id="3H2-7n-CeU"/>
+                            <constraint firstItem="OZL-jG-fF8" firstAttribute="leading" secondItem="d6R-dq-bST" secondAttribute="leading" constant="30" id="Hmn-X5-sbg"/>
                             <constraint firstItem="Upb-Gi-cNw" firstAttribute="leading" secondItem="d6R-dq-bST" secondAttribute="leading" constant="50" id="Icv-iT-Ie5"/>
                             <constraint firstItem="Upb-Gi-cNw" firstAttribute="top" secondItem="Pp1-U5-tUG" secondAttribute="bottom" constant="30" id="LhC-iw-8Me"/>
                             <constraint firstItem="d6R-dq-bST" firstAttribute="trailing" secondItem="U1d-uY-CED" secondAttribute="trailing" constant="30" id="MmY-ze-1e0"/>
+                            <constraint firstItem="OZL-jG-fF8" firstAttribute="top" secondItem="ldT-8Z-GIX" secondAttribute="bottom" constant="5" id="N7p-lm-bFC"/>
                             <constraint firstItem="Pp1-U5-tUG" firstAttribute="top" secondItem="U1d-uY-CED" secondAttribute="bottom" constant="10" id="PHW-Nu-qdw"/>
                             <constraint firstItem="U1d-uY-CED" firstAttribute="centerX" secondItem="vWr-9T-Sra" secondAttribute="centerX" id="QcZ-dT-wGr"/>
                             <constraint firstItem="U1d-uY-CED" firstAttribute="leading" secondItem="d6R-dq-bST" secondAttribute="leading" constant="30" id="Rrd-Pf-UrU"/>
                             <constraint firstItem="d6R-dq-bST" firstAttribute="trailing" secondItem="Pp1-U5-tUG" secondAttribute="trailing" constant="50" id="V1K-ut-Euc"/>
-                            <constraint firstItem="U1d-uY-CED" firstAttribute="top" secondItem="ldT-8Z-GIX" secondAttribute="bottom" id="Xfd-qh-cKg"/>
+                            <constraint firstItem="U1d-uY-CED" firstAttribute="top" secondItem="ldT-8Z-GIX" secondAttribute="bottom" constant="20" id="Xfd-qh-cKg"/>
                             <constraint firstItem="b64-En-Pxu" firstAttribute="top" secondItem="d6R-dq-bST" secondAttribute="top" id="XpW-9E-Qkq"/>
                             <constraint firstItem="d6R-dq-bST" firstAttribute="trailing" secondItem="Upb-Gi-cNw" secondAttribute="trailing" constant="50" id="ati-D8-Edi"/>
                             <constraint firstItem="Pp1-U5-tUG" firstAttribute="leading" secondItem="d6R-dq-bST" secondAttribute="leading" constant="50" id="bGz-dq-bVQ"/>
@@ -540,6 +551,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="lIB-zq-YcB"/>
                     <connections>
+                        <outlet property="addButton" destination="Upb-Gi-cNw" id="wPz-Xu-rRb"/>
+                        <outlet property="errorMessageForEventName" destination="OZL-jG-fF8" id="Crg-hm-MNc"/>
                         <outlet property="eventDateDP" destination="U1d-uY-CED" id="UNk-Im-ruV"/>
                         <outlet property="eventNameTF" destination="ldT-8Z-GIX" id="Ulf-Nr-SQB"/>
                     </connections>
